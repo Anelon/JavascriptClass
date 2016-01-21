@@ -9,4 +9,5 @@ while (addToDo) {
     var addToDo = prompt("Add another item to do.");
 }
 alert("Program end.")
-console.log(toDo);
+if ((toDo)) console.log(toDo);
+else console.log("Wow nothing to do?");
