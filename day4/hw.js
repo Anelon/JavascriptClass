@@ -1,5 +1,6 @@
 var word = "test";
 console.log(propperNoun(word));
+word = propperNoun(word);
 
 function propperNoun (word) {
     var first = word.substr(0,1);
