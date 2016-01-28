@@ -1,26 +1,28 @@
+//squares a number
 function square(num) {
     if (typeof num == "number") return num * num;
     else return NaN;
 }
-
+//capitalizes the first leter adds a period if there was not one previously
 function makeSentance(sentance) {
-    if (typeof sentance == "string") {
+    if (sentance && typeof sentance == "string") {
         if (sentance[sentance.length - 1] == ".") return sentance[0].toUpperCase() + sentance.slice(1);
         else return sentance[0].toUpperCase() + sentance.slice(1) + ".";
     } else return "";
 }
 
-function halfFlipEven(string) {
-    if (typeof string == "string" && string.length % 2 == 0 && string.length > 2) {
+function stringHalfFlip(string) {
+    if (typeof string && string == "string" && string.length % 2 == 0 && string.length > 2) {
         return string.substr(string.length / 2) + string.substr(0, string.length / 2);
-    } else if (string.length % 2 != 0) {
-        console.log("Use halfFlipOdd instead");
-        return "";
+    } else if (typeof string && string == "string" && string.length % 2 != 0 && string.length > 3) {
+        return string.substr(parseInt(string.length / 2) + 1) + string[parseInt(string.length / 2)] + string.substr(0, parseInt(string.length / 2));
+    } else if ( typeof string && string == "string" && string.length % 2 != 0) {
+        return string;
     } else return "";
 }
 
 function halfFlipOdd(string) {
-    if (typeof string == "string" && string.length % 2 != 0 && string.length > 3) {
+    if (typeof string && string == "string" && string.length % 2 != 0 && string.length > 3) {
         return string.substr(parseInt(string.length / 2) + 1) + string[parseInt(string.length / 2)] + string.substr(0, parseInt(string.length / 2));
     } else if (string.length % 2 == 0) {
         console.log("Use halfFlipEven instead");
@@ -29,7 +31,7 @@ function halfFlipOdd(string) {
 }
 
 function average(numArray) {
-    if (typeof numArray == "object" && numCheck(numArray) ) {
+    if (Array.isArray(numArray) == "object" && numCheck(numArray) ) {
         var sum = 0;
         for (var i = 0; i < numArray.length; i++) {
             sum = sum + parseInt(numArray[i]);
@@ -37,7 +39,7 @@ function average(numArray) {
         return sum / numArray.length;
     } else return NaN;
 }
-
+//function to check if items in an array are numbers
 function numCheck(numArray) {
     var numTest = false;
     for (var i = 0; i < numArray.length; i++) {

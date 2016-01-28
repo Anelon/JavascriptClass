@@ -14,6 +14,7 @@ fruits.push("blackberry");
 console.log([1, 2, 3, 4][2]);
 */
 
+/*
 //create an array to hold multiple arrays
 var fruitColors = [];
 var cherry = ["cherry", "red"];
@@ -42,7 +43,17 @@ console.log(fruits.slice(1, 3)); //doesn't modify original array.
 console.log(fruits); //note, it's the same as the original array.
 
 fruits = ["cherry", "apple", "banana", "plum"];
-//array.splice(begin, howManyToRemove, [additional, items, to, add]);
+//array.splice(begin, howManyToRemove, "additional", "items", "to", "add");
 fruits.splice(2, 1);
 console.log(fruits);
+*/
+
+function capitalize(str) {
+    if (!str || typeof str !== "string") {
+        return str;
+    }
+ 
+    return str[0].toUpperCase() + str.slice(1);
+}
+
     
