@@ -12,19 +12,18 @@
 var arrayToBe = [];
 
 function pushToArray() {
-    arrayToBe.push(domInput1());
-    arrayToBe.splice(0,0,domInput2());
+    if (domInput1()) arrayToBe.push(domInput1());
+    if (domInput2()) arrayToBe.splice(0,0,domInput2());
+    if (domInput3()) arrayToBe.splice(parseInt(arrayToBe.length/2),0,domInput3());
+    domTextOutput(arrayToBe.toString());
+	domInput2("");
+	domInput1("");
+	domInput3("");
 }
 
 // This function is called every time the button is clicked
 function handleGoButtonClick(event) {
-	// do events here
 	pushToArray();
-	console.log(arrayToBe);
-	domTextOutput(arrayToBe.toString());
-	domInput2("");
-	//Example - set value of input 1 to "Hello JavaScript!"
-	domInput1("");
 }
 
 
@@ -47,6 +46,14 @@ function domInput2(newval) {
 		input2Reference.value = newval;
 	}
 	return input2Reference.value;
+}
+
+function domInput3(newval) {
+    var input3Reference = document.getElementById("input3Id");
+    if(newval !== undefined) {
+        input3Reference.value = newval;
+    }
+    return input3Reference.value;
 }
 
 // This function sets and returns the value of Input 2
