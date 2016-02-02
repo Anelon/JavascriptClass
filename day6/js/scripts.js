@@ -12,10 +12,15 @@
 var arrayToBe = [];
 
 function pushToArray() {
+    //first input added to array end
     if (domInput1()) arrayToBe.push(domInput1());
+    //second input added to array begining
     if (domInput2()) arrayToBe.splice(0,0,domInput2());
+    // third input to array middle
     if (domInput3()) arrayToBe.splice(parseInt(arrayToBe.length/2),0,domInput3());
-    domTextOutput(arrayToBe.toString());
+    //output to box
+    domTextOutput(arrayToBe.join(", "));
+    //clear input boxes
 	domInput2("");
 	domInput1("");
 	domInput3("");
