@@ -25,6 +25,7 @@ getFoodDino.placeholder = "Food of Dino";
 
 var enterDino = document.createElement("button");
 enterDino.innerHTML = "Enter Dino";
+
 var dinoHolder = document.createElement("div");
 
 //add to page

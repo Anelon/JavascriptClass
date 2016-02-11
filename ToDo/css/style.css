@@ -1,0 +1,23 @@
+body {
+    background-image: url("https://www.filterforge.com/filters/11635-v7.jpg");
+    background-repeat: repeat;
+    border: 64px;
+    border-image-source: url("http://i1172.photobucket.com/albums/r570/Gamex101/StoneTile.png");
+    border-image-slice: 64 64;
+    border-image-outset: 0;
+    border-image-repeat: repeat;
+    padding: 10px;
+}
+
+list {
+    border-radius: 10%;
+    background: #808080;
+    margin: 16px;
+    padding: 5px;
+    width: 200px;
+    height: 150px;
+}
+
+strike {
+    text-decoration: line-through;
+}
