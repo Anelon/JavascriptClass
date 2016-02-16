@@ -15,9 +15,6 @@ setToDo.placeholder = "To Do";
 var enterToDo = document.createElement("button");
 enterToDo.innerHTML = "Add Item";
 
-var enterToDo = document.createElement("button");
-enterToDo.innerHTML = "Enter";
-
 var editButton = document.createElement("button");
 editButton.innerHTML = "Edit";
 
@@ -61,4 +58,5 @@ function addList(num) {
     var toDoItem = document.createElement("li");
     toDoItem.textContent = toDo[num];
     listedToDo.appendChild(toDoItem);
+    listedToDo.appendChild()
 }
