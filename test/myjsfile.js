@@ -1,9 +1,8 @@
 //set up variables
 var toDo = ["Work", "School", "Homework", "Trash"];
-var i = toDo.length;
 var boxDiv = document.createElement("div");
 document.body.appendChild(boxDiv);
-boxDiv.setAttribute("style", "border-radius: 10px;background: #808080;margin: 16px;padding: 5px;");
+boxDiv.setAttribute("style", "border-radius: 10px;background: #808080;margin: 16px;padding: 5px; width: 500px;");
 
 //set up adding items to do
 var addToDoDiv = document.createElement("div");
@@ -23,62 +22,76 @@ boxDiv.appendChild(addToDoDiv);
 addToDoDiv.appendChild(setToDo);
 addToDoDiv.appendChild(enterToDo);
 
-//check if there is anything already in todo
-if (toDo) {
-    for (var i = 0; i < toDo.length; i++) {
-            append(i);
-    }
-}
 
 //check if there is something to be added to the todo
 enterToDo.addEventListener("click", function() {
     var addToDo = document.getElementById('setToDo').value;
+    addToDo = addToDo[0].toUpperCase() + addToDo.slice(1);
     toDo.push(addToDo);
     setToDo.value = "";
     //print out the todo
-    append(i);
-    i++;
+    print();
 })
 
 //print each item to do
-function append(increment) {
+function append(item) {
+    console.log(toDo[item]);
     var div = document.createElement("div");
     div.setAttribute("id", "div");
+    console.log(item);
+    console.log(toDo.length);
+    if (item == 0) div.setAttribute("style", "border-style: solid; border-width: 2px; border-top-width: 4px;");
+    else if (item == toDo.length - 1) div.setAttribute("style", "border-style: solid; border-bottom-width: 4px;");
+    else div.setAttribute("style", "border-style: solid;border-width: 2px;");
+    
+    
     var list = document.createElement("li");
-    list.setAttribute("style", "float: left;")
+    list.setAttribute("style", "float: left;");
+    
     var delButton = document.createElement("button");
     delButton.innerHTML = "Delete";
     delButton.setAttribute("style", "float: right;")
+    delButton.setAttribute("id", item);
+    
     var checkOffButton = document.createElement("input");
     checkOffButton.setAttribute("type", "checkbox");
-    checkOffButton.setAttribute("style", "float: left;")
+    checkOffButton.setAttribute("style", "float: left;");
+    
     var br = document.createElement("br");
     
-    if (increment < 0) {
-        //toDoList.removeChild(div);
-        div.removeChild(checkOffButton);
-        div.removeChild(list);
-        div.removeChild(delButton);
-        return;
-    }
-    list.textContent = toDo[increment];
-    toDoList.appendChild(div);
-    
+    list.textContent = toDo[item];
+    list.setAttribute("style", "float: left; color: white;");
+    listCase.appendChild(div);
     div.appendChild(checkOffButton);
     div.appendChild(list);
     div.appendChild(delButton);
     div.appendChild(br);
     
     delButton.addEventListener("click", function () {
-        toDoList.removeChild(div);
-        toDo.splice(increment, 1);
+        console.log(event.target);
+        for (var i = 0; i < toDo.length; i++) {
+            if (i == event.target.id) {
+                toDo.splice(i, 1);
+            }
+        }
+        var pos = 500;
+        var id = setInterval(animateDel, 5);
+        function animateDel() {
+            if (pos == 0) {
+                clearInterval(id);
+            } else if (pos % 50 < 25) {
+                pos--;
+                
+            } else {
+                pos--;
+                
+            }
+        }
+
         print();
-        i--;
-        console.log("delete");
     })
     
     checkOffButton.addEventListener("click", function() {
-        //console.log(checkOffButton.checked);
         for (var i = 0; i < toDo.length; i++) {
             if (checkOffButton.checked) {
                 list.setAttribute("style", "float: left; text-decoration: line-through;");
@@ -91,13 +104,8 @@ function append(increment) {
     
 
 function print() {
-    //fix from printing old data and then new data
-    for (var i = 0; i < toDo.length; i++) {
-        append(-1);
-    }
-    listCase.removeChild(toDoList);
-    listCase.appendChild(toDoList);
-    for (var i = 0; i < toDo.length; i++) {
+    listCase.textContent = "";
+    for (var i = 0; i < toDo.length; i ++) {
         append(i);
     }
 }
