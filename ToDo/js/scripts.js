@@ -2,10 +2,11 @@
 var toDo = ["Work", "School", "Homework", "Trash"];
 var boxDiv = document.createElement("div");
 document.body.appendChild(boxDiv);
-boxDiv.setAttribute("style", "border-radius: 10px;background: #808080;margin: 16px;padding: 5px; width: 500px;");
+boxDiv.setAttribute("class", "itemdiv");
 
 //set up adding items to do
 var addToDoDiv = document.createElement("div");
+addToDoDiv.setAttribute("class", "additem");
 var setToDo = document.createElement("input");
 setToDo.setAttribute('id', 'setToDo');
 setToDo.placeholder = "To Do";
@@ -22,6 +23,7 @@ boxDiv.appendChild(addToDoDiv);
 addToDoDiv.appendChild(setToDo);
 addToDoDiv.appendChild(enterToDo);
 
+print();
 
 //check if there is something to be added to the todo
 enterToDo.addEventListener("click", function() {
@@ -35,45 +37,80 @@ enterToDo.addEventListener("click", function() {
 
 //print each item to do
 function append(item) {
-    console.log(toDo[item]);
     var div = document.createElement("div");
     div.setAttribute("id", "div");
-    console.log(item);
-    console.log(toDo.length);
-    if (item == 0) div.setAttribute("style", "border-style: solid; border-width: 2px; border-top-width: 4px;");
-    else if (item == toDo.length - 1) div.setAttribute("style", "border-style: solid; border-bottom-width: 4px;");
-    else div.setAttribute("style", "border-style: solid;border-width: 2px;");
-    
+    if (item == 0) div.setAttribute("class", "firstItem");
+    else if (item == toDo.length - 1) div.setAttribute("class", "lastItem");
+    else div.setAttribute("class", "middleItem");
     
     var list = document.createElement("li");
-    list.setAttribute("style", "float: left;");
+    list.setAttribute("class", "floatleft");
+    
+    var editButton = document.createElement("button");
+    editButton.innerHTML = "Edit";
+    editButton.setAttribute("class", "floatright")
+    editButton.setAttribute("id", item);
     
     var delButton = document.createElement("button");
     delButton.innerHTML = "Delete";
-    delButton.setAttribute("style", "float: right;")
+    delButton.setAttribute("class", "floatright")
     delButton.setAttribute("id", item);
     
     var checkOffButton = document.createElement("input");
     checkOffButton.setAttribute("type", "checkbox");
-    checkOffButton.setAttribute("style", "float: left;");
+    checkOffButton.setAttribute("class", "floatleft");
     
     var br = document.createElement("br");
     
     list.textContent = toDo[item];
-    list.setAttribute("style", "float: left; color: white;");
+    list.setAttribute("class", "itemtext");
     listCase.appendChild(div);
     div.appendChild(checkOffButton);
     div.appendChild(list);
+    div.appendChild(editButton);
     div.appendChild(delButton);
     div.appendChild(br);
     
+    editButton.addEventListener( "click", function () {
+        var edit = document.createElement("input");
+        edit.setAttribute("class", "floatleft");
+        var doneButton = document.createElement("button");
+        doneButton.setAttribute("class", "floatleft");
+        doneButton.innerHTML = "Done";
+        for (var i = 0; i < toDo.length; i++) {
+            if (i == event.target.id) {
+                var itemNum = i;
+                edit.innerHTML = toDo[i];
+                div.removeChild(list);
+                div.removeChild(editButton);
+                div.removeChild(br);
+                
+                div.appendChild(edit);
+                div.appendChild(doneButton);
+                div.appendChild(br);
+                doneButton.addEventListener("click", function() {
+                    var addToDo = edit.value;
+                    addToDo = addToDo[0].toUpperCase() + addToDo.slice(1);
+                    console.log(itemNum);
+                    toDo.splice(itemNum, 1, addToDo);
+                    print();
+                })
+                console.log(toDo[i]);
+            }
+        }
+    })
+    
     delButton.addEventListener("click", function () {
-        console.log(event.target);
         for (var i = 0; i < toDo.length; i++) {
             if (i == event.target.id) {
                 toDo.splice(i, 1);
             }
         }
+        
+        var pacman = document.createElement("div");
+        pacman.setAttribute("class", "pacman");
+    
+        console.log("pacman");
         var pos = 500;
         var id = setInterval(animateDel, 5);
         function animateDel() {
@@ -81,10 +118,12 @@ function append(item) {
                 clearInterval(id);
             } else if (pos % 50 < 25) {
                 pos--;
-                
+                pacman.setAttribute("class", "pacman");
+                pacman.style.left = pos + "px";
             } else {
                 pos--;
-                
+                pacman.setAttribute("class", "pacmanclose");
+                pacman.style.left = pos + "px";
             }
         }
 
@@ -94,9 +133,9 @@ function append(item) {
     checkOffButton.addEventListener("click", function() {
         for (var i = 0; i < toDo.length; i++) {
             if (checkOffButton.checked) {
-                list.setAttribute("style", "float: left; text-decoration: line-through;");
+                list.setAttribute("class", "itemtextlinethrough");
             } else {
-                list.setAttribute("style", "float: left; text-decoration: none;");
+                list.setAttribute("class", "itemtext");
             }
         }
     })

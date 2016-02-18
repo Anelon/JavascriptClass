@@ -9,13 +9,78 @@ body {
     padding: 10px;
 }
 
-list {
+.list {
     border-radius: 10%;
     background: #808080;
     margin: 16px;
     padding: 5px;
 }
 
-strike {
+.strike {
     text-decoration: line-through;
+}
+
+.itemdiv {
+    border-radius: 10px;
+    background: #808080;
+    margin: auto;
+    padding: 5px; 
+    width: 500px;
+}
+
+.additem {
+    margin-left: 30%;
+}
+
+.firstItem {
+    border-style: solid; 
+    border-width: 2px; 
+    border-top-width: 4px;
+}
+
+.middleItem {
+    border-style: solid;
+    border-width: 2px;
+}
+
+.lastItem {
+    border-style: solid; 
+    border-bottom-width: 4px;
+}
+
+.floatright {
+    float: right;
+}
+
+.floatleft {
+    float: left;
+}
+
+.itemtext {
+    float: left;
+    color: white;
+}
+
+.itemtextlinethrough {
+    float: left;
+    color: white;
+    text-decoration: line-through;
+}
+
+.pacman {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: url("Original_PacMan.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.pacmanclose {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: url("Closed_PacMan.png");
+    background-repeat: no-repeat;
+    background-size: contain;
 }
